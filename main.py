@@ -1,16 +1,20 @@
-# This is a sample Python script.
+import logging
 
-# Press Maj+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# Configurer un gestionnaire de fichier pour le journal du fichier principal
+main_logger = logging.getLogger('main')
+main_logger.setLevel(logging.DEBUG)
 
+# Créer un gestionnaire de fichier pour enregistrer les journaux du fichier principal
+main_log_handler = logging.FileHandler('main.log')
+main_log_handler.setLevel(logging.DEBUG)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# Définir un format de journal personnalisé
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+main_log_handler.setFormatter(formatter)
 
+# Ajouter le gestionnaire de fichier au logger principal
+main_logger.addHandler(main_log_handler)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# Appel à une fonction ou une méthode dans le module
+import module
+module.some_function()
